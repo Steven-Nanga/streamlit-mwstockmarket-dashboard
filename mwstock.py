@@ -72,9 +72,7 @@ st.set_page_config(
     layout="wide",
 )
 
-
 st.title("Malawi Stock Market Live Dashboard")
-
 
 # Create a placeholder for the data
 data_placeholder = st.empty()
@@ -91,8 +89,8 @@ while True:
         # Get unique symbols for filtering
         unique_symbols = sorted(data_df['Symbol'].unique())
 
-        # Use a unique key for the selectbox to avoid the DuplicateWidgetID error
-        selected_symbol = st.selectbox("Select Symbol to Filter:", unique_symbols, key="symbol_selectbox")
+        # Create a new selectbox with a unique key in each iteration
+        selected_symbol = st.selectbox("Select Symbol to Filter:", unique_symbols, key=f"symbol_selectbox_{time.time()}")
 
         # Use st.columns to create a layout with two columns
         col1, col2 = st.columns(2)
